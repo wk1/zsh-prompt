@@ -1,0 +1,36 @@
+# export PS1="%n@%m %1~ %# " #recreation of default zsh prompt
+# export PS1="$USER %F{blue}%2~%f 🐰 " #experimenting with colors
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '(%b)'
+ 
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+
+PS1='%n' #start with username
+PS1+=' ' #add delimiter
+PS1+='%F{174}%1~%F{reset_color}' #add working directory (only top level/replace home with ~)
+# PS1+=' ' #add delimiter
+PS1+='%F{138}${vcs_info_msg_0_}%F{reset_color}' #current branch
+PS1+=' ' #add delimiter
+
+#add prompt symbol
+if groups $USER | grep -q -w admin 
+then 
+    if [ $(id -u) = 0 ]
+    then
+        PS1+='🦸‍♂️'
+    else
+        PS1+='👨‍✈️'
+    fi
+else 
+    PS1+='🐰'
+fi
+
+PS1+=' ' #add delimiter
+
+export PS1
