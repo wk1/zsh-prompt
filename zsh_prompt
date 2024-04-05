@@ -15,18 +15,30 @@ PS1+='%F{#8AFF80}%1~%F{reset_color}' #add working directory (only top level/repl
 PS1+='%F{#A5DF9F}${vcs_info_msg_0_}%F{reset_color}' #current branch
 PS1+=' ' #add delimiter
 
+# Define an array of emojis
+emojis=("🍎" "🥑" "🍋" "🍦" "🍓" "🍅" "🐸" "🐛" "💲" "🥝" "💬" "🗯️ " "💭" "🐙")
+
+# Select a random emoji from the array
+# Zsh arrays start at 1, so adjust accordingly
+random_emoji=${emojis[(($RANDOM % ${#emojis[@]} + 1))]}
+
+# Use the selected emoji
+# echo "Your random emoji is: $random_emoji"
+
+
 #add prompt symbol
-if groups $USER | grep -q -w admin 
-then 
-    if [ $(id -u) = 0 ]
-    then
-        PS1+='🦸‍♂️'
-    else
-        PS1+='👨‍✈️'
-    fi
-else 
-    PS1+='🐰'
-fi
+PS1+='$random_emoji'
+# if groups $USER | grep -q -w admin 
+# then 
+#     if [ $(id -u) = 0 ]
+#     then
+#         PS1+='🦸‍♂️'
+#     else
+#         PS1+='👨‍✈️'
+#     fi
+# else 
+#     PS1+='$random_emoji'
+# fi
 
 PS1+=' ' #add delimiter
 
