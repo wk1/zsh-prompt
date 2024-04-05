@@ -13,9 +13,9 @@ setopt PROMPT_SUBST
 
 PS1='%n' #start with username
 PS1+=' ' #add delimiter
-PS1+='%F{174}%1~%F{reset_color}' #add working directory (only top level/replace home with ~)
+PS1+='%F{#8AFF80}%1~%F{reset_color}' #add working directory (only top level/replace home with ~)
 # PS1+=' ' #add delimiter
-PS1+='%F{138}${vcs_info_msg_0_}%F{reset_color}' #current branch
+PS1+='%F{#A5DF9F}${vcs_info_msg_0_}%F{reset_color}' #current branch
 PS1+=' ' #add delimiter
 
 #add prompt symbol
