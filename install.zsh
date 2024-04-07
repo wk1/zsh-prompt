@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-# Neuer Pfad zur zsh_prompt Datei
-ziel="/etc/.zsh_prompt"
+# Pfad zur zsh_prompt Datei für den aktuellen Benutzer
+ziel="$HOME/.zsh_prompt"
 
-# Kopiert und benennt `zsh-prompt` um und verschiebt es ins Zielverzeichnis
-sudo cp zsh_prompt $ziel
+# Kopiert das Prompt in das Benutzerverzeichnis
+cp zsh_prompt $ziel
 
-# Fügt den Source-Befehl zu /etc/zshrc hinzu, falls nicht bereits vorhanden
-if ! grep -qxF "source $ziel" /etc/zshrc; then
-  echo "source $ziel" | sudo tee -a /etc/zshrc > /dev/null
+# Fügt den Source-Befehl zu ~/.zshrc hinzu, falls nicht bereits vorhanden
+if ! grep -qxF "source $ziel" $HOME/.zshrc; then
+    echo "source $ziel" >> $HOME/.zshrc
 fi
